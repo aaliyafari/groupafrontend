@@ -1,1 +1,13 @@
- <h1> hi  </h1>
+<template>
+  <h1> Hi  vishal </h1>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+
+</style>
