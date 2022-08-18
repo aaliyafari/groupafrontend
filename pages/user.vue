@@ -1,3 +1,4 @@
+<template>
 <input  type="text" v-model="username" placeholder="username"/>
    <input  type="text" v-model="password" placeholder="email"/>
    <input  type="text" v-model="email" placeholder="password"/> 
