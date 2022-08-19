@@ -1,15 +1,10 @@
-<!-- <template>
-     <div > 
-        <h1 class=" bg-red-700 text-lg">Hello, Tailwind 3!</h1>
-        <p class="text-center">hello</p>
-    </div>
-</template> -->
+
 <template>
 <main class="flex justify-center w-half h-screen">
     <div>
         <form @submit="formSubmit" class="bg-gray-200 flex justify-center border-black rounded-lg border-2 pr-0 pl-0">
             <table>
-                <h2 class="text-teal-500  text-xl font-bold pt-6">Employee Management Sysytem</h2>
+                <h2 class="text-teal-500  text-xl font-bold pt-6">Employee Management Sytem</h2>
                 <hr />
                 <br />
                 <label class="pt-10 py-10 " for="firstname">First Name </label><br />
@@ -54,7 +49,7 @@
                 <th class="px-4 border-black rounded-lg border-2">Action</th>
             </tr>
             <tr v-for="(item,index) in users" v-bind:index="index" :key="item">
-                <!-- <td class="px-4 border-black rounded-lg border-2">{{item.id=i+1}}</td> -->
+                <!-- <td class="px-4 border-black rounded-lg border-2">{{item.id=i+1}}</td>  -->
                 <td class="px-4 border-black rounded-lg border-2">{{item.firstname}}</td>
                 <td class="px-4 border-black rounded-lg border-2">{{item.lastname}}</td>
                 <td class="px-4 border-black rounded-lg border-2">{{item.mobile}}</td>
@@ -62,10 +57,10 @@
                 <td class="px-4 border-black rounded-lg border-2">{{item.email}}</td>
                 <td class="px-4 border-black rounded-lg border-2">{{item.address}}</td>
                 <td class="px-4 border-black rounded-lg border-2">{{item.Action}}
-                    <button class="mx-3 py-1 px-4  bg-green-500 hover:bg-green-800 text-white font-bold text-center" @click="userDelete(index)">
+                    <button class="mx-3 py-1 px-4  bg-green-500 hover:bg-green-800 text-white font-bold text-center rounded-md mb-3" @click="userDelete(index)">
                         Delete
                     </button>
-                    <button class="mx-3 py-1 px-4  bg-red-500 hover:bg-red-800 text-white font-bold text-center" @click="on(item.id)">
+                    <button class="mx-3 py-1 px-4  bg-red-500 hover:bg-red-800 text-white font-bold text-center rounded-md mb-3" @click=" onEdit(index)">
                       Edit
                     </button>
                 </td>
@@ -114,7 +109,43 @@ export default {
         },
         userDelete(index) {
             this.users.splice(index, 1)
-        }
+        },
+
+        onEdit(index) {
+            this.user.firstname = this.users[index].firstname;
+            this.user.lastname = this.users[index].lastname;
+            this.user.mobile = this.users[index].mobile;
+            this.user.salary = this.users[index].salary;
+            this.user.email = this.users[index].email;
+             this.user.address = this.users[index].address;
+          
+            this.isEdit = true;
+            this.indexEdit = index;
+        },
+
+            validationfirstname() {
+            if (!isNaN(this.user.firstname) || this.user.firstname == null || this.user.firstname == "") {
+                alert("Please Enter Firstname");
+                // console.log("Please Enter Name");
+                this.resetForm();
+            } else {
+                console.log(this.user.firstname);
+                // alert("Name is valid");
+            }
+        },
+
+
+        //    validationfirstname() {
+        //     if (!isNaN(this.user.firstnamename) || this.user.firstname == null || this.user.firstname == "") {
+        //         alert("Please Enter Firstname");
+        //         // console.log("Please Enter Name");
+        //         this.resetForm();
+        //     } else {
+        //         console.log(this.user.firstname);
+        //         // alert("Name is valid");
+        //     }
+        // },
+        
     }
 }
 </script>
