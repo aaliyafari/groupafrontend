@@ -1,29 +1,93 @@
 <template>
-<h1>Hello user</h1>
-<h2>Hello</h2>
-<input  type="text" v-model="username" placeholder="username"/>
-   <input  type="text" v-model="password" placeholder="email"/>
-   <input  type="text" v-model="email" placeholder="password"/> 
-   <button type="submit" @click="submit">submit</button>
-</template>
-<script setup lang="ts">
-            const username=ref('');
-            const password=ref('');
-            const email=ref('')
-       
-        async function submit(){
-          let formData = new FormData()
-            formData.append('username', username.value);
-            formData.append('email', email.value);
-            formData.append('password', password.value);
+  <div>
+    <v-form >
+      <v-container>
+        <v-row>
+          <v-col
+            cols="12"
+            md="4"
+          >
+            <v-text-field
+              v-model="username"
+              :counter="10"
+              label="User name"
+              required
+            ></v-text-field>
+          </v-col>
+  
+          <v-col
+            cols="12"
+            md="4"
+          >
+            <v-text-field
+              v-model="email"
+              :counter="10"
+              label="E-mail"
+              required
+            ></v-text-field>
+          </v-col>
+  
+          <v-col
+            cols="12"
+            md="4"
+          >
+            <v-text-field
+              v-model="password"
+              label="Password"
+              required
+            ></v-text-field>
+          </v-col>
+          <v-col
+            cols="12"
+            md="4"
+          >
+            <v-btn
+              color="success"
+              class="mr-4"
+              @click="submit"
+            >submit</v-btn>
+          </v-col>
 
-        await $fetch('http://localhost:3000/users/create', {
-        method: 'POST',
-        body: formData
-    });
+        </v-row>
+      </v-container>
+    </v-form>
+</div>
+</template>
+
+<script>
+
+export default {
+    data(){
+      return{
+    username:'',
+    email:'',
+    password:''
+
+}
+    },
+    methods:{
+async submit(e){
+    e.preventDefault();
+     console.log(this.firstname,this.lastname,this.email)
+     await fetch("http://localhost:8080/users/create",{
+        method:"POST",
+        headers:{
+            "content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            username:this.username,
+            email:this.email,
+            password:this.password
+        })
         
+     }).then(res=>res.json())
     }
+    }
+    
+
+}
 </script>
-<style scoped>
- 
+
+<style>
+
 </style>
