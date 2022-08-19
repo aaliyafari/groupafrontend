@@ -1,32 +1,33 @@
 <template>
-<main class="flex justify-center w-full h-screen">
+<main class="bg-[url(https://img.freepik.com/premium-photo/book-stack-library-room-blurred-bookshelf-background_42691-514.jpg?w=1300)] flex justify-center w-full h-screen">
     <div>
-        <form @submit="formSubmit" class="bg-gray-100 border-black rounded-lg border-2 px-12">
+        <form @submit="formSubmit" class="flex justify-center bg-gray-100 border-black rounded-lg border-2 px-12">
             <table>
-                <h2 class="text-teal-900 text-xl font-bold pt-6">Book Management</h2>
+                <h2 class=" text-teal-900 text-xl font-bold pt-6">Book Management</h2>
                 <hr />
                 <br />
-                <label class="pt-10 py-10 " for="bookname">Book name:</label><br />
+
+                <label class="pt-10 py-10 " for="bookname">Book name: </label>
                 <input type="text" v-model="user.bookname" id="bookname" name="bookname" placeholder="Enter your book name" /><br /><br />
 
-                <label for="authorname">Author name:</label><br />
+                <label for="authorname">Author name:</label>
                 <input type="text" v-model="user.authorname" id="authorname" name="authorname" placeholder="Enter your Author name" /><br /><br />
-                
-                <label for="price"> Price: </label><br />
+
+                <label for="price"> Price: </label>
                 <input type="number" v-model="user.price" id="price" name="price" placeholder="Enter book price" />
                 <br /><br />
-                
-                <label for="image">Book Image: </label><br />
+
+                <label for="image">Book Image: </label>
                 <input type="image" v-model="user.image" id="image" name="image" placeholder="image" />
                 <br /><br />
 
-                <label for="isbnno">Book ISBN Number: </label><br />
+                <label for="isbnno">Book ISBN Number: </label>
                 <input type="number" v-model="user.isbnno" id="isbnno" name="number" placeholder="Enter your ISBN number" />
                 <br /><br />
 
                 <div>
-                    <button class="py-1 px-5 mr-5 bg-blue-500 hover:bg-blue-700 text-white font-bold text-center rounded-md mb-3" type="submit" @click="formSubmit"> Submit </button>
-                    <button class="py-1 px-5 bg-blue-500 hover:bg-blue-700 text-white font-bold text-center rounded-md mb-3" type="reset"> Reset </button>
+                    <button class="py-1 px-5 mr-5 bg-red-500 hover:bg-red-700 text-white font-bold text-center rounded-md mb-3" type="submit" @click="formSubmit"> Submit </button>
+                    <button class="py-1 px-5 bg-green-500 hover:bg-green-700 text-white font-bold text-center rounded-md mb-3" type="reset"> Reset </button>
                 </div>
             </table>
         </form>
@@ -49,18 +50,15 @@
                 <td class="px-4 border-black rounded-lg border-2">{{item.image}}</td>
                 <td class="px-4 border-black rounded-lg border-2">{{item.isbnno}}</td>
                 <td class="px-4 border-black rounded-lg border-2">{{item.Action}}
-                    <button class="mx-3" @click="userDelete(index)">
-                        Delete
-                    </button>
-                    <button class="mx-3" @click="on(item.id)">
-                        Edit
-                    </button>
+                <button class="mx-3 py-1 px-4 bg-red-500 hover:bg-red-700 text-white font-bold text-center rounded-md mb-3" @click="userDelete(index)">Delete </button>
+                <button class="mx-3 py-1 px-5 bg-red-500 hover:bg-red-700 text-white font-bold text-center rounded-md mb-3" @click="on(item.id)">Edit </button>
                 </td>
             </tr>
         </table>
     </div>
 </main>
 </template>
+
 <script>
 export default {
     data() {
