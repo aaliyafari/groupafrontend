@@ -49,7 +49,6 @@
             id="Size"
             ref="size"
           >
-            <option value="XS">XS</option>
             <option value="S">S</option>
             <option value="M" selected>M</option>
             <option value="L">L</option>
@@ -131,15 +130,6 @@
   </div>
 </template>
 <script setup lang="ts">
-// import { ref } from "vue";
-// const productName = ref("");
-// const price = ref("");
-// const stock = ref("");
-// const size = ref("");
-// const emp_contact = ref("");
-// const emp_salary = ref("");
-// const emp_dept = ref("");
-// const productName =
 const mydata = reactive({
   allProduct: [],
   product: {
