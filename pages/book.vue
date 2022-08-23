@@ -1,127 +1,145 @@
 <template>
-<main class="bg-[url(https://img.freepik.com/premium-photo/book-stack-library-room-blurred-bookshelf-background_42691-514.jpg?w=1300)] flex justify-center w-full h-screen">
+<main class="flex justify-center w-full h-screen">
     <div>
-        <form @submit="formSubmit" class="flex justify-center bg-blue-100 border-black rounded-lg border-2 px-12">
+        <form method="post" class="bg-gray-100 border-black rounded-lg border-2 px-12">
             <table>
-                <h2 class=" text-teal-900 text-xl font-bold pt-6">Book Management</h2>
+                <h2 class="text-teal-900 text-xl font-bold pt-6">Book Management System</h2>
                 <hr />
                 <br />
-                <label class="pt-10 py-10 " for="bookname">Book name: </label>
-                <input @change="validationbookname" type="text" v-model="user.bookname" id="bookname" name="bookname" placeholder="Enter your book name" /><br /><br />
-
-                <label for="authorname">Author name:</label>
-                <input @change="validationbookname" type="text" v-model="user.authorname" id="authorname" name="authorname" placeholder="Enter your Author name" /><br /><br />
-
-                <label for="price"> Price: </label>
-                <input @change="pricecheck" type="number" v-model="user.price" id="price" name="price" placeholder="Enter book price" />
+                <label class="pt-10 py-10" for="book_name">Book name:</label><br />
+                <input type="text" id="book_name" name="book_name" ref="book_name" placeholder="Enter your Book name" /><br /><br />
+                
+                <label for="author">Book Author: </label><br />
+                <input type="text" id="author" name="author" ref="author" placeholder="Enter book Auther" />
                 <br /><br />
 
-                <label for="image">Book Image: </label>
-                <input type="image" v-model="user.image" id="image" name="image" placeholder="image" />
+                <label for="price">Book price:</label><br />
+                <input type="number" id="price" name="price" ref="price" placeholder="Enter Book price" /><br /><br />
+                
+                <label for="book-image">Book Image: </label><br />
+                <input type="file" id="book-image" name="book-image" />
                 <br /><br />
 
-                <label for="isbnno">Book ISBN Number: </label>
-                <input type="number" v-model="user.isbnno" id="isbnno" name="number" placeholder="Enter your ISBN number" />
+                <label for="book-isbn">Book Number: </label><br />
+                <input type="number" id="book-isbn" name="book-isbn" placeholder="Enter your number" />
                 <br /><br />
+                
                 <div>
-                    <button class="py-1 px-5 mr-5 bg-red-500 hover:bg-red-700 text-white font-bold text-center rounded-md mb-3" type="submit" @click="formSubmit"> Submit </button>
-                    <button class="py-1 px-5 bg-green-500 hover:bg-green-700 text-white font-bold text-center rounded-md mb-3" type="reset"> Reset </button>
+                    <button class="py-1 px-5 mr-5 bg-blue-500 hover:bg-blue-700 text-white font-bold text-center rounded-md mb-3" type="button" @click="onFormSubmit()">
+                        Submit
+                    </button>
+                    <button class="py-1 px-5 bg-blue-500 hover:bg-blue-700 text-white font-bold text-center rounded-md mb-3" type="reset">
+                        Reset
+                    </button>
                 </div>
             </table>
         </form>
-        <br>
+        <!-- <button class="py-1 px-5 mr-5 bg-blue-500 hover:bg-blue-700 text-white font-bold text-center rounded-md mb-3" type="submit" @click="getdata">
+            Get Data
+        </button> -->
+        <br />
         <table class="list">
-            <tr>
-                <!-- <th class="px-4 border-black rounded-lg border-2">id</th> -->
-                <th class="px-4 border-black rounded-lg border-2">Book ID</th>
-                <th class="px-4 border-black rounded-lg border-2">Book Name</th>
-                <th class="px-4 border-black rounded-lg border-2">Author Name</th>
-                <th class="px-4 border-black rounded-lg border-2">Price</th>
-                <th class="px-4 border-black rounded-lg border-2">Book Image </th>
-                <th class="px-4 border-black rounded-lg border-2">ISBN Number </th>
-                <th class="px-4 border-black rounded-lg border-2">Action</th>
-            </tr>
-            <tr v-for="(item,i) in users" v-bind:index="index" :key="item">
-                <td class="px-4 border-black rounded-lg border-2">{{item.id=i+1}}</td>
-                <td class="px-4 border-black rounded-lg border-2">{{item.bookname}}</td>
-                <td class="px-4 border-black rounded-lg border-2">{{item.authorname}}</td>
-                <td class="px-4 border-black rounded-lg border-2">{{item.price}}</td>
-                <td class="px-4 border-black rounded-lg border-2">{{item.image}}</td>
-                <td class="px-4 border-black rounded-lg border-2">{{item.isbnno}}</td>
-                <td class="px-4 border-black rounded-lg border-2">{{item.Action}}
-                    <button class="mx-3 py-1 px-4 bg-red-500 hover:bg-red-700 text-white font-bold text-center rounded-md mb-3" @click="userDelete(index)">Delete </button>
-                    <button class="mx-3 py-1 px-5 bg-red-500 hover:bg-red-700 text-white font-bold text-center rounded-md mb-3" @click="customEdit(i)">Edit </button>
-                </td>
-            </tr>
+            <thead>
+                <tr>
+                    <th class="px-4 border-black rounded-lg border-2">id</th>
+                    <th class="px-4 border-black rounded-lg border-2">Book Name</th>
+                    <th class="px-4 border-black rounded-lg border-2">Book Author</th>
+                    <th class="px-4 border-black rounded-lg border-2">Book Price</th>
+                    <th class="px-4 border-black rounded-lg border-2">Book Image</th>
+                    <th class="px-4 border-black rounded-lg border-2">Book ISBN Number</th>
+                    <th class="px-4 border-black rounded-lg border-2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item) of state.allBooks" :key="item.id">
+                    <td class="px-4 border-black rounded-lg border-2">{{ item.id }}</td>
+                    <td class="px-4 border-black rounded-lg border-2">{{ item.book_name }}</td>
+                    <td class="px-4 border-black rounded-lg border-2">{{ item.author }}</td>
+                    <td class="px-4 border-black rounded-lg border-2">{{ item.price }}</td>
+                    <td class="px-4 border-black rounded-lg border-2">{{ item.book_image }}</td>
+                     <td class="px-4 border-black rounded-lg border-2">{{ item.book_isbn }}</td>
+                    <td class="px-4 border-black rounded-lg border-2">{{ item.Action }}
+                        <button class=" mx-3" @click="onDeleteOfBook(item.book_id)">
+                            Delete
+                        </button>
+                        <button class="mx-3" @click="onClickOfEditBook(item.book_id)">
+                            Edit
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </main>
 </template>
-<script>
-export default {
-    data() {
-        return {
-            users: [],
-            user: {
-                bookname: '',
-                authorname: '',
-                price: '',
-                image: '',
-                isbnno: '',
-            },
-        };
-    },
-    methods: {
-        formSubmit(event) {
-            event.preventDefault();
-            this.users.push(this.user);
-            this.user = {
-                bookname: '',
-                authorname: '',
-                price: '',
-                image: '',
-                isbnno: ''
-            };
-        },
-        
-        onReset(event) {
-            event.preventDefault();
-            this.form.bookname = "";
-            this.form.authorname = "";
-            this.form.price = "";
-            this.form.image = "";
-            this.form.isbnno = "";
-        },
-        userDelete(index) {
-            this.users.splice(index, 1)
-        },
-        customEdit(index) {
-            this.user.bookname = this.users[index].bookname;
-            this.user.authorname = this.users[index].authorname;
-            this.user.price = this.users[index].price;
-            this.user.image = this.users[index].image;
-            this.user.isbnno = this.users[index].isbnno;
-            this.isEdit = true;
-            this.indexEdit = index;
-        },
 
-         validationbookname() {
-            if (!isNaN(this.user.bookname) || this.user.bookname == null || this.user.bookname == "") {
-                alert("Please Enter Name");
-                this.resetForm();
-            } 
-            else {
-                //alert("Name is valid");
-            }
-        },
-         pricecheck() {
-            if (isNaN(this.user.price) || this.user.price < 1000000000 || this.user.price > 9999999999) {
-                alert("price is Invalid");
-                this.resetForm();
-            } else {
-                // alert("Mobile Number is valid");
-            }
-        }
-    }
+<script setup lang="ts">
+// let book_name = ref("book_name");
+// let book_price = ref("book_price");
+// let book_author = ref("book_author")
+// const count: any = await $fetch('http://localhost:3004/book');
+// async function getdata() {
+//   const allData = await $fetch('http://localhost:3004/book');
+//   console.log(allData);
+// }
+// function userDelete(id) {
+//   console.log("hiii" + id);
+// }
+// async function editData(id) {
+//   const { data: one } = await useFetch('http://localhost:3004/book/' + id);
+//   console.log(one);
+// }
+let state = reactive({
+    allBooks: []
+});
+getBookAPI();
+// Calling Get API
+// function getBooks() {
+//   getBookAPI().then((data: any) => {
+//     state.allBooks = data;
+//   });
+// }
+// GET API
+async function getBookAPI() {
+    state.allBooks = await $fetch('http://localhost:3001/book');
+}
+// POST API
+async function onFormSubmit() {
+    const sampleData = {
+        "book_id": state.allBooks.length,
+        "book_name": "marathi" + state.allBooks.length,
+        "author": "ankita" + state.allBooks.length,
+        "price": 200 + state.allBooks.length,
+        "book_image": "ghjgj" + state.allBooks.length,
+        "book_isbn": "91001" + state.allBooks.length
+    };
+    const response = await $fetch('http://localhost:3001/book', {
+        method: 'POST',
+        body: JSON.stringify(sampleData),
+    });
+    getBookAPI();
+}
+// PATCH API
+async function onClickOfEditBook(id) {
+    const sampleData = {
+        "book_id": id,
+        "book_name": "Shaktiman" + id,
+        "author": "ankita" + state.allBooks.length,
+        "price": 200 + state.allBooks.length,
+        "book_image": "ghjgj" + state.allBooks.length,
+        "book_isbn": "91001" + state.allBooks.length
+    };
+    const response = await $fetch('http://localhost:3001/book/' + id, {
+        method: 'PATCH',
+        body: JSON.stringify(sampleData),
+    });
+    getBookAPI();
+}
+// Delete API
+async function onDeleteOfBook(id) {
+    await $fetch('http://localhost:3001/book/' + id, {
+        method: 'DELETE'
+    });
+    getBookAPI();
 }
 </script>
