@@ -8,15 +8,13 @@
                     <label for="Name">First Name: </label>
                     <input
                         class="border border-gray-400 block px-4 py-1 w-full rounded focus:outline-none focus:border-teal-500"
-                        type="text" v-model="state.student.firstname" ref="firstname" name="firstname" id="firstname"
-                        required>
+                        type="text" v-model="state.student.firstname" ref="firstname" name="firstname" id="firstname">
                 </div>
                 <div class="w-1/2">
                     <label for="Name">Last Name:</label>
                     <input
                         class="border border-gray-400 block px-4 py-1 w-full rounded focus:outline-none focus:border-teal-500"
-                        type="text" v-model="state.student.lastname" ref="lastname" name="lastname" id="lastname"
-                        required>
+                        type="text" v-model="state.student.lastname" ref="lastname" name="lastname" id="lastname">
                 </div>
             </div>
             <div class="flex space-x-4">
@@ -24,13 +22,13 @@
                     <label for="Name">Mobile Number:</label>
                     <input
                         class="border border-gray-400 block px-4 py-1 w-full rounded focus:outline-none focus:border-teal-500"
-                        type="text" v-model="state.student.mobile" ref="mobile" name="mobile" id="mobile" required>
+                        type="text" v-model="state.student.mobile" ref="mobile" name="mobile" id="mobile">
                 </div>
                 <div class="w-1/2">
                     <label for="Name">Email Id:</label>
                     <input
                         class="border border-gray-400 block px-4 py-1 w-full rounded focus:outline-none focus:border-teal-500"
-                        type="text" v-model="state.student.email" ref="email" name="email" id="email" required>
+                        type="text" v-model="state.student.email" ref="email" name="email" id="email">
                 </div>
             </div>
             <div class="flex space-x-4">
@@ -38,7 +36,7 @@
                     <label for="Name">Address:</label>
                     <input
                         class="border border-gray-400 block px-4 py-1 w-full rounded focus:outline-none focus:border-teal-500"
-                        type="text" v-model="state.student.address" ref="address" name="address" id="address" required>
+                        type="text" v-model="state.student.address" ref="address" name="address" id="address">
                 </div>
                 <div class="w-1/2">
                     <label for="Name">Course:</label>
@@ -130,13 +128,13 @@ async function getStudentAPI() {
 // POST API
 async function onFormSubmit() {
     console.log(state.student);
-    
+
     await $fetch("http://localhost:3001/student", {
         method: "POST",
         body: JSON.stringify(state.student),
 
     });
-    
+
     getStudentAPI();
 }
 
