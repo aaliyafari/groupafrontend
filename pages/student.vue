@@ -126,6 +126,11 @@ async function getStudentAPI() {
 }
 // POST API
 async function onFormSubmit() {
+<<<<<<< HEAD
+    console.log(state.student);
+
+=======
+>>>>>>> 2efbdd48e405e71343eba48c9240e5bc4d612a63
     await $fetch("http://localhost:3001/student", {
         method: "POST",
         body: JSON.stringify(state.student),
