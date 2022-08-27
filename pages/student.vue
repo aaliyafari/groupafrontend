@@ -51,7 +51,7 @@
                 </div>
 
             </div>
-            <div class="flex space-x-4">
+            <!-- <div class="flex space-x-4">
                 <div class="w-full">
                     <label for="Name">Photo:</label>
                     <input
@@ -59,12 +59,11 @@
                         type="text" v-model="state.student.image" ref="image" name="firstname" id="firstname">
                 </div>
 
-            </div>
+            </div> -->
             <div class="form_action_button space-x-2">
                 <button class="border border-gray-400 px-4 py-2 max-w-xs rounded bg-teal-600 text-white"
                     @click="onFormSubmit()" type="button">Submit</button>
             </div>
-
         </form>
 
 
@@ -79,7 +78,7 @@
                     <th>Email Id</th>
                     <th>Address</th>
                     <th>course_name</th>
-                    <th>Image</th>
+                    <!-- <th>Image</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -114,7 +113,7 @@ let state = reactive({
         email: "",
         address: "",
         course_name: "",
-        image: "abc"
+        // image: "abc"
     },
 });
 console.log(state.studentData)
@@ -127,8 +126,11 @@ async function getStudentAPI() {
 }
 // POST API
 async function onFormSubmit() {
+<<<<<<< HEAD
     console.log(state.student);
 
+=======
+>>>>>>> 2efbdd48e405e71343eba48c9240e5bc4d612a63
     await $fetch("http://localhost:3001/student", {
         method: "POST",
         body: JSON.stringify(state.student),
