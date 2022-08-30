@@ -9,6 +9,7 @@ export default defineNuxtConfig({
           tailwindcss: {},
           autoprefixer: {},
         },
+      jsx: "preserve"
       },
     },
   },
