@@ -14,7 +14,7 @@
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="id"
               >
-                Employee Id
+                Employee id
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:bg-white focus:border-gray-500"
@@ -51,20 +51,20 @@
             <div class="">
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="lname" name="lname"
+                for="lastname"
               >
                  Last Name
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="lname"
-                name="lname"
-                v-model="sampleData.lname"
+                id="lastname"
+                name="lastname"
+                v-model="sampleData.lastname"
                 type="text"
                 placeholder="Enter Last Name"
               /><br/>
               <span
-               v-for="error in v$.lname.$errors"
+               v-for="error in v$.lastname.$errors"
                :key="error.$uid"
                class="text-red-400"
               >
@@ -196,7 +196,7 @@
         <br/>
         <table class="list">
             <tr>
-             
+                <!-- <th class="px-4 border-black rounded-lg border-2">id</th> -->
                 <th class="px-4 border-black rounded-lg border-2">ID</th>
                 <th class="px-4 border-black rounded-lg border-2">First Name</th>
                 <th class="px-4 border-black rounded-lg border-2">Last Name</th>
@@ -208,7 +208,7 @@
                 <th class="px-4 border-black rounded-lg border-2">Action</th>
             </tr>
            
-            <tr v-for="(item) of emp.allEmp" :key="item.id">
+            <tr v-for="(item) of empp.allEmp" :key="item.id">
             <td class="px-4 border-black rounded-lg border-2">
               {{ item.id }}
             </td>
@@ -216,7 +216,7 @@
               {{ item.firstname }}
             </td>
             <td class="px-4 border-black rounded-lg border-2">
-              {{ item.lname }}
+              {{ item.lastname }}
             </td>
             <td class="px-4 border-black rounded-lg border-2">
               {{ item.mobile }}
@@ -271,7 +271,7 @@ let sampleData =reactive(
   {
   id: null,
   firstname: "",
-  lname: "",
+  lastname: "",
   mobile: "",
   salary: "",
   email:"",
@@ -282,17 +282,17 @@ let sampleData =reactive(
   return value.includes("user");
  }
 
-const emp = reactive({
+const empp = reactive({
   allEmp: [],
 });
 getApi();
 async function getApi() {
-  emp.allEmp = await $fetch("http://localhost:3001/emp/");
+  empp.allEmp = await $fetch("http://localhost:3001/emp/");
 }
 // POST API
 async function Submit() {
   // alert("sds");
-  //  event.preventDefault();
+   event.preventDefault();
    const result = await v$.value.$validate();
   console.log(sampleData);
   // const payload = sampleData;
@@ -310,11 +310,11 @@ async function Submit() {
 // PATCH API
 async function onEdit(id) {
     State.Submit = "Update";
-  let empEdit = emp.allEmp.filter((employ) => {
+  let empEdit = empp.allEmp.filter((employ) => {
     if (employ.id == id) {
       sampleData.id = employ.id;
       sampleData.firstname = employ.firstname;
-      sampleData.lname = employ.lname;
+      sampleData.lastname = employ.lastname;
       sampleData.mobile = employ.mobile;
       sampleData.salary = employ.salary;
        sampleData.email = employ.email;
@@ -347,7 +347,7 @@ const rules = computed(() => {
       minLength: minLength(3),
       
     },
-    lname: { required, minLength: minLength(3) },
+    lastname: { required, minLength: minLength(3) },
     mobile: {required, maxlength: maxLength(10), 
     },
     salary: {required, maxlength: maxLength(15)},
