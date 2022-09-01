@@ -1,45 +1,202 @@
-
 <template>
-<main class="flex justify-center w-half h-screen">
+<main class="flex justify-center w-full h-screen">
     <div>
-        <form @submit="onFormSubmit()" class="bg-gray-200 flex justify-center border-black rounded-lg border-2 pr-0 pl-0">
-            <table>
-                <h2 class="text-teal-500  text-xl font-bold pt-6">Employee Management Sytem</h2>
-                <hr />
-                <br />
-                <label class="pt-10 py-10 " for="firstname">First Name </label><br />
-                <input type="text"  id="firstname" name="firstname" placeholder="Enter your First name" /><br /><br />
+      
+        <form
+          method="post"
+          class="bg-gray-100 flex justify-center border-black rounded-lg border-2 px-12"
+        >
+          <table>
+            <h2 class="text-teal-500 text-xl font-bold pt-6">Employee Management System </h2>
+            <hr /><br/>
+            <div class="mb-6">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="id"
+              >
+                Employee id
+              </label>
+              <input
+                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:bg-white focus:border-gray-500"
+                id="id"
+                name="id"
+                v-model="sampleData.id"
+                type="number"
+                placeholder="Enter Emp id"
+              />
+             
+            </div>
+            <div class="mb-6">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="firstname"
+              >
+               First Name
+              </label>
+              <input
+                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:bg-white focus:border-gray-500"
+                id="firstname"
+                name="firstname"
+                v-model="sampleData.firstname"
+                type="text"
+                placeholder="Enter First Name"
+              />
+              <span
+              v-for="error in v$.firstname.$errors"
+              :key="error.$uid"
+              class="text-red-400">
+              {{error.$message}}
+              </span>
+            </div>
+            <div class="">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="lname" name="lname"
+              >
+                 Last Name
+              </label>
+              <input
+                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="lname"
+                name="lname"
+                v-model="sampleData.lname"
+                type="text"
+                placeholder="Enter Last Name"
+              /><br/>
+              <span
+               v-for="error in v$.lname.$errors"
+               :key="error.$uid"
+               class="text-red-400"
+              >
+              {{error.$message}}
+              </span>
+               
+              
+            </div>
 
-                <label for="lastname">Last name:</label><br />
-                <input type="text"  id="lastname" name="lastname" placeholder="Enter your Last name" /><br /><br />
+             <div class="">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="mobile"
+              >
+                Mobile
+              </label>
+              <input
+                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="mobile"
+                name="mobile"
+                v-model="sampleData.mobile"
+                type="number"
+                placeholder="Enter Mobile no"
+              /><br/>
+              <span 
+               v-for="error in v$.mobile.$errors"
+               :key="error.$uid"
+               class="text-red-400" >
+               {{error.$message}}</span>
+             
+              
+            </div>
 
-                <label for="mobile">Mobile: </label><br />
-                <input type="number" id="mobile" name="mobile" placeholder="Enter your Mobile" />
-                <br /><br />
-
-                <label for="salary">Salary: </label><br />
-                <input type="number"  id="salary" name="salary" placeholder="Enter your Salary" />
-                <br /><br />
-
-                <label for="email"> Email: </label><br />
-                <input type="email" id="email" name="email" placeholder="Enter your Email" />
-                <br /><br />
-
-
-                <label for="address"> Address: </label><br />
-                <input type="text"  id="address" name="address" placeholder="Enter your Address" />
-                <br /><br />
-
-               <div>   
-                    <button class="py-1 px-5 mr-5 bg-green-500 hover:bg-green-800 text-white font-bold text-center rounded-md mb-3" type="submit" @click="formSubmit"> Submit </button>
-                    <button class="py-1 px-5 bg-red-500 hover:bg-red-800 text-white font-bold text-center rounded-md mb-3" type="reset"> Reset </button>
-                </div>
-            </table>
+             <div class="">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="salary"
+              >
+                 Salary
+              </label>
+              <input
+                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="salary"
+                name="salary"
+                v-model="sampleData.salary"
+                type="number"
+                placeholder="Enter Salary"
+              /><br/>
+              <span
+               v-for="error in v$.salary.$errors"
+               :key="error.$uid"
+               class="text-red-400">
+               {{error.$message}}</span>
+                
+            </div>
+ <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full px-3">
+                <label
+                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="email"
+                >
+                   Email
+                </label>
+                <input
+                  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="email"
+                  name="email"
+                  v-model="sampleData.email"
+                  type="email"
+                  placeholder="Enter  Email"
+                />
+                <span
+                  v-for="error in v$.email.$errors"
+                  :key="error.$uid"
+                  class="text-red-500"
+                  >{{ error.$message }}</span
+                >
+              </div>
+            </div>
+            <div class="rounded mb-4 shadow appearance-none label-floating">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="address"
+                > Address</label
+              >
+              <input
+                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                type="text"
+                id="address"
+                v-model="sampleData.address"
+                name="address"
+                placeholder="Enter Address"
+              /><br/>
+              <span
+                v-for="error in v$.address.$errors"
+                :key="error.$uid"
+                class="text-red-500"
+                >{{ error.$message }}</span
+              >
+               
+              <label for="department">Select Department :</label>
+            <select name="language" id="language" v-model="sampleData" >
+            
+            <option value="IT">IT</option>
+              <option value="Non-IT">Non-IT</option>
+              <option value="Mechanical">Mechanical</option>
+              <option value="Civil">Civil</option>
+             
+            </select>
+              
+            
+            </div>
+            <div id="hide">
+              <button
+                class="py-1 px-5 mr-5 bg-green-500 hover:bg-green-700 text-white font-bold text-center rounded-md mb-3"
+                type="button"
+                @click="Submit()"
+              >
+                Submit
+              </button>
+              <button
+                class="py-1 px-5 bg-red-500 hover:bg-red-700 text-white font-bold text-center rounded-md mb-3"
+                type="reset"
+              >
+                Reset
+              </button>
+            </div>
+          </table>
         </form>
-        <br>
+
+        <br/>
         <table class="list">
             <tr>
-                <!-- <th class="px-4 border-black rounded-lg border-2">id</th> -->
+             
                 <th class="px-4 border-black rounded-lg border-2">ID</th>
                 <th class="px-4 border-black rounded-lg border-2">First Name</th>
                 <th class="px-4 border-black rounded-lg border-2">Last Name</th>
@@ -47,17 +204,38 @@
                 <th class="px-4 border-black rounded-lg border-2">Salary</th>
                 <th class="px-4 border-black rounded-lg border-2">Email</th>
                 <th class="px-4 border-black rounded-lg border-2">Address</th>
+                <th class="px-4 border-black rounded-lg border-2">Department</th>
                 <th class="px-4 border-black rounded-lg border-2">Action</th>
             </tr>
-            <tr v-for="(item) in state.employeeData" :key="item.id">
-                 <td class="px-4 border-black rounded-lg border-2">{{item.id}}</td> 
-                <td class="px-4 border-black rounded-lg border-2">{{item.firstname}}</td>
-                <td class="px-4 border-black rounded-lg border-2">{{item.lastname}}</td>
-                <td class="px-4 border-black rounded-lg border-2">{{item.mobile}}</td>
-                <td class="px-4 border-black rounded-lg border-2">{{item.salary}}</td>
-                <td class="px-4 border-black rounded-lg border-2">{{item.email}}</td>
-                <td class="px-4 border-black rounded-lg border-2">{{item.address}}</td>
-                <td class="px-4 border-black rounded-lg border-2">{{item.Action}}
+           
+            <tr v-for="(item) of emp.allEmp" :key="item.id">
+            <td class="px-4 border-black rounded-lg border-2">
+              {{ item.id }}
+            </td>
+            <td class="px-4 border-black rounded-lg border-2">
+              {{ item.firstname }}
+            </td>
+            <td class="px-4 border-black rounded-lg border-2">
+              {{ item.lname }}
+            </td>
+            <td class="px-4 border-black rounded-lg border-2">
+              {{ item.mobile }}
+            </td>
+            <td class="px-4 border-black rounded-lg border-2">
+              {{ item.salary }}
+            </td>
+             <td class="px-4 border-black rounded-lg border-2">
+              {{ item.email }}
+            </td>
+             <td class="px-4 border-black rounded-lg border-2">
+              {{ item.address }}
+            </td>
+            <td class="px-4 border-black rounded-lg border-2">
+              {{ item.department }}
+            </td>
+            <td class="px-4 border-black rounded-lg border-2">
+              {{ item.Action }}
+
                     <button class="mx-3 py-1 px-4  bg-green-500 hover:bg-green-800 text-white font-bold text-center rounded-md mb-3" @click="onDeleteOfEmployee(item.id)">
                         Delete
                     </button>
@@ -70,51 +248,118 @@
     </div>
 </main>
 </template>
-<script setup>
-let state = reactive({
-    employeeData: []
+<script setup lang="ts">
+import useVuelidate, {
+  required,
+  
+  email,
+  minLength,
+  maxLength,
+  helpers,
+} from "~/utils/vuelidate/useVuelidate";
+import { reactive, computed } from "vue"; 
+const State = reactive({
+  select: true,
+  Submit: "submit",
+  allEmp: [],
+  employ: [],
+  id: "",
+  errorBack: {},
 });
-getEmpAPI();
-// GET API
-async function getEmpAPI() {
-    state.employeeData = await $fetch('http://localhost:3001/emp');
+
+let sampleData =reactive(
+  {
+  id: null,
+  firstname: "",
+  lname: "",
+  mobile: "",
+  salary: "",
+  email:"",
+  address:"",
+
+});
+ const containsUser = (value: any)=>{
+  return value.includes("user");
+ }
+
+const emp = reactive({
+  allEmp: [],
+});
+getApi();
+async function getApi() {
+  emp.allEmp = await $fetch("http://localhost:3001/emp/");
 }
 // POST API
-async function onFormSubmit() {
-    const sampleData = {
-        "id": state.employeeData.length,
-        "firstname": state.employeeData.length,
-        "lastname": state.employeeData.length,
-        "mobile": state.employeeData.length,
-        "salary":state.employeeData.length,
-        "email": state.employeeData.length,
-        "address":state.employeeData.length
-        
-        
-    };
-    getEmpAPI();
+async function Submit() {
+  // alert("sds");
+  //  event.preventDefault();
+   const result = await v$.value.$validate();
+  console.log(sampleData);
+  // const payload = sampleData;
+    sampleData.id = parseInt(sampleData.id, 10);
+  await $fetch("http://localhost:3001/emp", {
+    method: "POST",
+    // body: JSON.stringify(sampleData),
+    body: sampleData,
+
+  
+  });
+  getApi();
 }
+
 // PATCH API
-// async function onClickOfEditProduct(studentId) {
-//     const sampleData = {
-//         "id": studentId,
-//         "productName": studentId,
-//         "price": state.studentData.length,
-//         "stock": state.studentData.length,
-//         "size": state.studentData.length,
-//         "image": state.studentData.length
-//     };
-//     getProductAPI();
-// }
-// // Delete API
-async function onDeleteOfEmployee(id) {
-    await $fetch('http://localhost:3001/emp/' + id, {
-        method: 'DELETE'
-    });
-    getEmpAPI();
+async function onEdit(id) {
+    State.Submit = "Update";
+  let empEdit = emp.allEmp.filter((employ) => {
+    if (employ.id == id) {
+      sampleData.id = employ.id;
+      sampleData.firstname = employ.firstname;
+      sampleData.lname = employ.lname;
+      sampleData.mobile = employ.mobile;
+      sampleData.salary = employ.salary;
+       sampleData.email = employ.email;
+        sampleData.address = employ.address;
+      return employ;
+    }
+  });
+  console.log(empEdit);
+  const response = await $fetch("http://localhost:3001/emp/" + id, {
+    method: "PATCH",
+    body: sampleData,
+  });
+  getApi();
 }
+
+// Delete API
+async function onDeleteOfEmployee(id: number) {
+  await $fetch("http://localhost:3001/emp/" + id, {
+    method: "DELETE",
+  });
+  getApi();
+}
+
+
+
+const rules = computed(() => {
+  return {
+    firstname: {
+      required,
+      minLength: minLength(3),
+      
+    },
+    lname: { required, minLength: minLength(3) },
+    mobile: {required, maxlength: maxLength(10), 
+    },
+    salary: {required, maxlength: maxLength(15)},
+    email: { required, email },
+    address: {
+      required,
+      minLength: minLength(3),
+      maxLength: maxLength(30),
+    },
+  };
+});
+const v$ = useVuelidate(rules, sampleData);
 </script>
-
-
 
 
