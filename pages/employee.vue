@@ -51,20 +51,20 @@
             <div class="">
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="lastname"
+                for="lname" name="lname"
               >
                  Last Name
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="lastname"
-                name="lastname"
-                v-model="sampleData.lastname"
+                id="lname"
+                name="lname"
+                v-model="sampleData.lname"
                 type="text"
                 placeholder="Enter Last Name"
               /><br/>
               <span
-               v-for="error in v$.lastname.$errors"
+               v-for="error in v$.lname.$errors"
                :key="error.$uid"
                class="text-red-400"
               >
@@ -208,7 +208,7 @@
                 <th class="px-4 border-black rounded-lg border-2">Action</th>
             </tr>
            
-            <tr v-for="(item) of empp.allEmp" :key="item.id">
+            <tr v-for="(item) of emp.allEmp" :key="item.id">
             <td class="px-4 border-black rounded-lg border-2">
               {{ item.id }}
             </td>
@@ -216,7 +216,7 @@
               {{ item.firstname }}
             </td>
             <td class="px-4 border-black rounded-lg border-2">
-              {{ item.lastname }}
+              {{ item.lname }}
             </td>
             <td class="px-4 border-black rounded-lg border-2">
               {{ item.mobile }}
@@ -271,7 +271,7 @@ let sampleData =reactive(
   {
   id: null,
   firstname: "",
-  lastname: "",
+  lname: "",
   mobile: "",
   salary: "",
   email:"",
@@ -282,17 +282,17 @@ let sampleData =reactive(
   return value.includes("user");
  }
 
-const empp = reactive({
+const emp = reactive({
   allEmp: [],
 });
 getApi();
 async function getApi() {
-  empp.allEmp = await $fetch("http://localhost:3001/emp/");
+  emp.allEmp = await $fetch("http://localhost:3001/emp/");
 }
 // POST API
 async function Submit() {
   // alert("sds");
-   event.preventDefault();
+  //  event.preventDefault();
    const result = await v$.value.$validate();
   console.log(sampleData);
   // const payload = sampleData;
@@ -310,11 +310,11 @@ async function Submit() {
 // PATCH API
 async function onEdit(id) {
     State.Submit = "Update";
-  let empEdit = empp.allEmp.filter((employ) => {
+  let empEdit = emp.allEmp.filter((employ) => {
     if (employ.id == id) {
       sampleData.id = employ.id;
       sampleData.firstname = employ.firstname;
-      sampleData.lastname = employ.lastname;
+      sampleData.lname = employ.lname;
       sampleData.mobile = employ.mobile;
       sampleData.salary = employ.salary;
        sampleData.email = employ.email;
@@ -347,7 +347,7 @@ const rules = computed(() => {
       minLength: minLength(3),
       
     },
-    lastname: { required, minLength: minLength(3) },
+    lname: { required, minLength: minLength(3) },
     mobile: {required, maxlength: maxLength(10), 
     },
     salary: {required, maxlength: maxLength(15)},
