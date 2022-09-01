@@ -1,44 +1,7 @@
 <template>
 <main class="flex justify-center w-full h-screen">
     <div>
-        <!-- <form class="bg-gray-200 flex justify-center border-black rounded-lg border-2 pr-0 pl-0">
-            <table>
-                <h2 class="text-teal-500  text-xl font-bold pt-6">Employee Management Sytem</h2>
-                <hr />
-                <br />
-                 <label class="pt-10 py-10 " for="id">Employee id </label><br />
-                <input type="text"  id="id" name="id" placeholder="Enter emp id"  v-model="sampleData.id"/><br /><br />
-
-
-                <label class="pt-10 py-10 " for="firstname">First Name </label><br />
-                <input type="text"  id="firstname" name="firstname" placeholder="Enter your First name"  v-model="sampleData.firstname"/><br /><br />
-
-                <label for="lastname">Last name:</label><br />
-                <input type="text"  id="lastname" name="lastname" placeholder="Enter your Last name"  v-model="sampleData.lastname"/><br /><br />
-
-                <label for="mobile">Mobile: </label><br />
-                <input type="number" id="mobile" name="mobile" placeholder="Enter your Mobile"  v-model="sampleData.mobile" />
-                <br /><br />
-
-                <label for="salary">Salary: </label><br />
-                <input type="number"  id="salary" name="salary" placeholder="Enter your Salary"  v-model="sampleData.salary" />
-                <br /><br />
-
-                <label for="email"> Email: </label><br />
-                <input type="email" id="email" name="email" placeholder="Enter your Email" v-model="sampleData.email"/>
-                <br /><br />
-
-
-                <label for="address"> Address: </label><br />
-                <input type="text"  id="address" name="address" placeholder="Enter your Address" v-model="sampleData.address"/>
-                <br /><br />
-
-               <div>   
-                    <button class="py-1 px-5 mr-5 bg-green-500 hover:bg-green-800 text-white font-bold text-center rounded-md mb-3" type="button" @click="Submit()"> Submit </button>
-                    <button class="py-1 px-5 bg-red-500 hover:bg-red-800 text-white font-bold text-center rounded-md mb-3" type="reset"> Reset </button>
-                </div>
-            </table>
-        </form> -->
+      
         <form
           method="post"
           class="bg-gray-100 flex justify-center border-black rounded-lg border-2 px-12"
@@ -233,7 +196,7 @@
         <br/>
         <table class="list">
             <tr>
-                <!-- <th class="px-4 border-black rounded-lg border-2">id</th> -->
+             
                 <th class="px-4 border-black rounded-lg border-2">ID</th>
                 <th class="px-4 border-black rounded-lg border-2">First Name</th>
                 <th class="px-4 border-black rounded-lg border-2">Last Name</th>
