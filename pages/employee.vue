@@ -191,14 +191,26 @@
                 id="address"
                 v-model="sampleData.address"
                 name="address"
-                placeholder="Address"
-              />
+                placeholder="Enter Address"
+              /><br/>
               <span
                 v-for="error in v$.address.$errors"
                 :key="error.$uid"
                 class="text-red-500"
                 >{{ error.$message }}</span
               >
+               
+              <label for="department">Select Department :</label>
+            <select name="language" id="language" v-model="sampleData" >
+            
+            <option value="IT">IT</option>
+              <option value="Non-IT">Non-IT</option>
+              <option value="Mechanical">Mechanical</option>
+              <option value="Civil">Civil</option>
+             
+            </select>
+              
+            
             </div>
             <div id="hide">
               <button
@@ -229,6 +241,7 @@
                 <th class="px-4 border-black rounded-lg border-2">Salary</th>
                 <th class="px-4 border-black rounded-lg border-2">Email</th>
                 <th class="px-4 border-black rounded-lg border-2">Address</th>
+                <th class="px-4 border-black rounded-lg border-2">Department</th>
                 <th class="px-4 border-black rounded-lg border-2">Action</th>
             </tr>
            
@@ -255,6 +268,9 @@
               {{ item.address }}
             </td>
             <td class="px-4 border-black rounded-lg border-2">
+              {{ item.department }}
+            </td>
+            <td class="px-4 border-black rounded-lg border-2">
               {{ item.Action }}
 
                     <button class="mx-3 py-1 px-4  bg-green-500 hover:bg-green-800 text-white font-bold text-center rounded-md mb-3" @click="onDeleteOfEmployee(item.id)">
@@ -278,7 +294,7 @@ import useVuelidate, {
   maxLength,
   helpers,
 } from "~/utils/vuelidate/useVuelidate";
-import { reactive, computed } from "vue";
+import { reactive, computed } from "vue"; 
 const State = reactive({
   select: true,
   Submit: "submit",
@@ -308,7 +324,7 @@ const empp = reactive({
 });
 getApi();
 async function getApi() {
-  empp.allEmp = await $fetch("http://localhost:4001/emp/");
+  empp.allEmp = await $fetch("http://localhost:3001/emp/");
 }
 // POST API
 async function Submit() {
@@ -318,7 +334,7 @@ async function Submit() {
   console.log(sampleData);
   // const payload = sampleData;
     sampleData.id = parseInt(sampleData.id, 10);
-  await $fetch("http://localhost:4001/emp", {
+  await $fetch("http://localhost:3001/emp", {
     method: "POST",
     // body: JSON.stringify(sampleData),
     body: sampleData,
@@ -344,7 +360,7 @@ async function onEdit(id) {
     }
   });
   console.log(empEdit);
-  const response = await $fetch("http://localhost:4001/emp/" + id, {
+  const response = await $fetch("http://localhost:3001/emp/" + id, {
     method: "PATCH",
     body: sampleData,
   });
@@ -353,7 +369,7 @@ async function onEdit(id) {
 
 // Delete API
 async function onDeleteOfEmployee(id: number) {
-  await $fetch("http://localhost:4001/emp/" + id, {
+  await $fetch("http://localhost:3001/emp/" + id, {
     method: "DELETE",
   });
   getApi();
@@ -366,10 +382,11 @@ const rules = computed(() => {
     firstname: {
       required,
       minLength: minLength(3),
-      containsUser: helpers.withMessage("first name is required", containsUser),
+      
     },
     lastname: { required, minLength: minLength(3) },
-    mobile: {required, maxlength: maxLength(10)},
+    mobile: {required, maxlength: maxLength(10), 
+    },
     salary: {required, maxlength: maxLength(15)},
     email: { required, email },
     address: {
@@ -381,6 +398,12 @@ const rules = computed(() => {
 });
 const v$ = useVuelidate(rules, sampleData);
 </script>
+
+
+
+
+
+
 
 
 
